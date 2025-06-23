@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/theme/AppColors.dart';
 import 'package:flutter_application_1/theme/AppTextStyles.dart';
-// p6
+
 class SubjectCard extends StatelessWidget {
   final String subjectId;
   final String title;
   final String imageUrl;
   final double? rating;
   final int? count;
+  final TextEditingController controller;
 
   const SubjectCard({
     required this.subjectId,
@@ -15,6 +16,7 @@ class SubjectCard extends StatelessWidget {
     required this.imageUrl,
     required this.rating,
     required this.count,
+    required this.controller,
     Key? key,
   }) : super(key: key);
 
@@ -48,9 +50,9 @@ class SubjectCard extends StatelessWidget {
           Text(
             title,
             style: AppTextStyles.subtitle,
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 40),
-          // Zone de saisie pour un nombre réel
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(
@@ -59,10 +61,12 @@ class SubjectCard extends StatelessWidget {
               border: Border.all(color: AppColors.primary, width: 1),
             ),
             child: TextField(
+              controller: controller, // ✅ هذا هو الأهم
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               style: AppTextStyles.label.copyWith(color: Colors.black),
+              textAlign: TextAlign.center,
               decoration: const InputDecoration(
-                hintText: 'ضع العلامة', // Placeholder
+                hintText: 'ضع العلامة',
                 border: InputBorder.none,
               ),
             ),
